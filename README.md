@@ -9,4 +9,4 @@ Source code is available in the folder: /source/pvc/
 
 Basic data, sample vehicle models with results and associated folder structure may be found in the folder: /data/
 
-Note that to keep the file size reasonable, the fuel economy simulations in this sample result were generated via only 20 vehicles (435 trips) from California Household Travel Survey (CHTS) dataset. Users and contributors interested in the result for full CHTS dataset may download all trips in CHTS dataset (~253MB) then use PVC software to re-run the fuel economy simulations: https://drive.google.com/file/d/1vzOfcJKXdaZ4Z537GV2XBBJNwdPqFT9p/view?usp=sharing
+Note that to keep the file size reasonable, the fuel economy simulations in this sample result were generated via only 20 vehicles (435 trips) from California Household Travel Survey (CHTS) dataset. Users and contributors interested in the result for full CHTS dataset may download all trips in CHTS dataset (~253MB) then use PVC software to re-run the fuel economy simulations: https://bit.ly/pvc_chts_full
