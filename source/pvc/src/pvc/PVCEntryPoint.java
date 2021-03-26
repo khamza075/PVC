@@ -17,6 +17,7 @@ public class PVCEntryPoint {
 		JFileChooser dlgFileFolderChooser  = new JFileChooser();
 		dlgFileFolderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
+		//Check if current folder includes the minimum necessary data for PVC, if not prompt user to select a different folder
 		if (!FFStructure.rootFolderIsValid(cpvcRoot)) {
 			dlgFileFolderChooser.setDialogTitle("Choose PVC Root Folder");
 			
@@ -26,6 +27,7 @@ public class PVCEntryPoint {
 			}
 		}
 
+		//Attempt to create a File Structure class, cannot proceed if it fails
 		FFStructure cFS = FFStructure.createFS(cpvcRoot);
 		if (cFS == null) {
 			JOptionPane.showMessageDialog(null, "Unable to identify necessary files and/or folder structure.", "Error!", JOptionPane.ERROR_MESSAGE);
@@ -38,6 +40,7 @@ public class PVCEntryPoint {
 			return;
 		}
 		
+		//Identify the ID of last run analysis
 		int aID = Math.max(0, Math.min(cFS.getLastAnalysisID(), cFS.analysisFolders().length-1));
 		cFS.setLastAnalysisID(aID);
 
