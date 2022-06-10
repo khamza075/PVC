@@ -300,8 +300,7 @@ public class FEcoCasesLookup {
 		fecoCases = new FEcoCase[numSolSets][numVehicles];
 		
 		for (int j=0; j<numVehicles; j++) {
-			for (int i=0; i<numSolSets; i++) {
-				
+			for (int i=0; i<numSolSets; i++) {				
 				fecoCases[i][j] = new FEcoCase();
 				
 				switch (fsG.fsofModels()[j].vehModelParam.general.vehPtType) {
