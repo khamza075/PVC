@@ -21,6 +21,7 @@ public class SliderBarsManager {
 	private int aID;
 	private AnalysisVehModelsSetup avms;
 	private WIITModel wiitMod;
+	private BEVCommercialModel bevMoreCommVeh;
 	
 	private SliderBarSetup[] sbars;
 	public SliderBarSetup[] sbars() {return sbars;}
@@ -43,6 +44,7 @@ public class SliderBarsManager {
 	
 	public void prepUPInputs(UsePhaseSSimulator.InputStructure upsInput, UsePhaseSSimulator upSim, float lifetimeMilesLCA,
 			float[] nonBatMfgGHG_lowEnd, float[] nonBatMfgGHG_highEnd, float bevRep_dollarPerMile, float bevRep_dollarPerDay) {
+		
 		if (upSim.mfgGHGInputsNeeded()) {
 			float sbarValue_nonBatMfg = getCurValue(APSliderBars.MfgGHG_exceptBat);
 			float sbarValue_BatMfgReduction = getCurValue(APSliderBars.MfgGHG_Battery);
@@ -156,11 +158,13 @@ public class SliderBarsManager {
 	}
 	
 	
-	public SliderBarsManager(FFStructure cFS, int analysisID, AnalysisVehModelsSetup vehModelsSetup, WIITModel wiitModel) {
+	public SliderBarsManager(FFStructure cFS, int analysisID, AnalysisVehModelsSetup vehModelsSetup, WIITModel wiitModel, 
+			BEVCommercialModel bevMoreCommercialVeh) {
 		fs = cFS;
 		aID = analysisID;
 		avms = vehModelsSetup;
 		wiitMod = wiitModel;
+		bevMoreCommVeh = bevMoreCommercialVeh;
 		
 		sbars = new SliderBarSetup[APSliderBars.values().length];
 		
@@ -177,6 +181,10 @@ public class SliderBarsManager {
 		rvStatus = new RVStatus();
 		
 		save();
+	}
+	
+	public float adjustedFracAdditionalCommercialBEVs(float nominalFracExtraVeh, int nominalRangeMiles) {
+		return bevMoreCommVeh.fracExtraVehicles(nominalFracExtraVeh, nominalRangeMiles);
 	}
 	
 	private void update_bIDtoOID() {
