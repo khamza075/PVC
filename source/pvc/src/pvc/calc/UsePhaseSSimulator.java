@@ -893,7 +893,7 @@ public class UsePhaseSSimulator {
 			}
 				break;
 			}
-			System.out.println(fsofModels[i].vehModelParam.general.name + " --> current maxGCO2perMile = "+maxGCO2perMile);//TODO
+			System.out.println(fsofModels[i].vehModelParam.general.name + " --> current maxGCO2perMile = "+maxGCO2perMile);
 		}
 		
 		return maxGCO2perMile;
