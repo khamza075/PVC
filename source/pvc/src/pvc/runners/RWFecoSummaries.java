@@ -161,6 +161,17 @@ public class RWFecoSummaries extends RunWrapper {
 				}				
 				
 				stWindow.println("Processed "+avms.vehModelsSetup()[j].shortName+" in: "+fecoMan.getTitlesArray()[i]);
+			}			
+		}
+		
+		for (int i=0; i<numSolSets; i++) {
+			//Attempt to create JSON file summary for current solution set
+			stWindow.println("Creating JSON summary for "+fecoMan.getTitlesArray()[i]);
+			try {
+				VehSummaiesJSON.createJSONOutput(fs, aID, i);
+				stWindow.println("Complete");
+			} catch (Exception e) {
+				stWindow.println("Unsuccessful");
 			}
 		}
 	}
