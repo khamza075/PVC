@@ -5,8 +5,14 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 import fastsimjava.*;
-import pvc.calc.comp.*;
-import pvc.datamgmt.*;
+import pvc.calc.comp.ChargingEvents;
+import pvc.calc.comp.CompactTripSummaries;
+import pvc.calc.comp.DayTimeChargingPlanner;
+import pvc.calc.comp.VehicleSampleMA;
+import pvc.datamgmt.AnalysisVehModelsSetup;
+import pvc.datamgmt.FEcoSimsC;
+import pvc.datamgmt.FFStructure;
+import pvc.datamgmt.WIITModel;
 import pvc.datamgmt.comp.FDefaults;
 import pvc.gui.comp.RunStatusWindow;
 
@@ -63,6 +69,7 @@ public class FEcoSimsGenerator {
 			String fsofFile = fs.getFilePath_FASTSimVehModel(aID, avms.vehModelsSetup()[i].shortName);
 			fsofModels[i] = new FSJOneFileVehModel(fsofFile);
 		}
+		
 		
 		numDaytimeCharging = 0;
 		numCasesPerPHEV = 0;
