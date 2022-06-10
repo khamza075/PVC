@@ -2,7 +2,7 @@ package pvc.calc;
 
 import java.util.ArrayList;
 
-import fastsimjava.FSJOneFileVehModel;
+import fastsimjava.*;
 import pvc.datamgmt.*;
 import pvc.datamgmt.comp.APSliderBars;
 import pvc.datamgmt.comp.DUnits;
@@ -514,7 +514,9 @@ public class TCOCalculator {
 			switch (fsofModels[i].vehModelParam.general.vehPtType) {
 			case bev:
 				if (wiitMod.bevRepModel.bevRepCommercial != null) {
-					float fracAdditionalVehicles = sbarMan.getCurValue(APSliderBars.Bhv_BEVRep_Commercial);
+					float fracAdditionalVehiclesBaseLine = sbarMan.getCurValue(APSliderBars.Bhv_BEVRep_Commercial);
+					int nomAER = (int)(vms[i].nominalAERMiles + 0.5f);
+					float fracAdditionalVehicles = sbarMan.adjustedFracAdditionalCommercialBEVs(fracAdditionalVehiclesBaseLine, nomAER);
 					additionalVehiclesCost = fracAdditionalVehicles * totAcquisitionCost;
 				}
 				break;
@@ -547,7 +549,6 @@ public class TCOCalculator {
 	public TCOvsGHGSummaryOutputStructure getCostVsGHGSummary(UsePhaseSSimulator.OutputStructure upResults, SliderBarsManager sbarMan, float lifetimeMilesLCA) {
 		TCOvsGHGSummaryOutputStructure res = new TCOvsGHGSummaryOutputStructure();
 		AnalysisVehModelsSetup.AVehModelSetup[] vms = avms.vehModelsSetup();
-
 		
 		for (int i=0; i<vms.length; i++) {
 			//Calculate Price Elements
@@ -797,7 +798,9 @@ public class TCOCalculator {
 			switch (fsofModels[i].vehModelParam.general.vehPtType) {
 			case bev:
 				if (wiitMod.bevRepModel.bevRepCommercial != null) {
-					float fracAdditionalVehicles = sbarMan.getCurValue(APSliderBars.Bhv_BEVRep_Commercial);
+					float fracAdditionalVehiclesBaseLine = sbarMan.getCurValue(APSliderBars.Bhv_BEVRep_Commercial);
+					int nomAER = (int)(vms[i].nominalAERMiles + 0.5f);
+					float fracAdditionalVehicles = sbarMan.adjustedFracAdditionalCommercialBEVs(fracAdditionalVehiclesBaseLine, nomAER);
 					additionalVehiclesCost = fracAdditionalVehicles * totAcquisitionCost;
 				}
 				break;
