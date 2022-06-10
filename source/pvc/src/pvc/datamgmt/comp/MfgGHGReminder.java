@@ -11,9 +11,11 @@ public class MfgGHGReminder {
 		if (reminderIssued) return;
 		
 		JOptionPane.showMessageDialog(null, 
-				 "All estimates of manufacturing GHG are approximate estimates based on\n"
-				+"generic vehicle and battery models from GREET 2020 that are NOT specific\n"
-				+"to any particular vehicle or battery manufacturer.", 
+				 "These manufacturing GHG estimates are based on GREET 2020, and are based\n"
+				+"on GREET 2020 (https://greet.es.anl.gov/) the specific vehicle’s characteristics,\n"
+				+"such as battery size and chemistry, vehicle class and weight, etc. However,\n" 
+				+"the authors have not validated, nor suggest, that this estimate is correct for\n"+
+				"any specific vehicle or manufacturer.", 
 				"Attention", JOptionPane.OK_OPTION|JOptionPane.WARNING_MESSAGE);
 		reminderIssued = true;
 	}
