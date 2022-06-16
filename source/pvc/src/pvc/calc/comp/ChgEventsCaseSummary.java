@@ -386,6 +386,21 @@ public class ChgEventsCaseSummary {
 			return chgDCFast.totKWh/grandTotKWh;
 		}
 		
+		public float avApproxCostMod(float dcFastPricePremium) {
+			float kWhL1 = chgL1.totKWh;
+			float kWhL2 = chgL2.totKWh;
+			float kWhDC = chgDCFast.totKWh;
+			
+			return (kWhL1*chgL1.priceMod + kWhL2*chgL2.priceMod + kWhDC * chgDCFast.priceMod * (1f+dcFastPricePremium))/(kWhL1+kWhL2+kWhDC);
+		}
+		public float avApproxGHGMod() {
+			float kWhL1 = chgL1.totKWh;
+			float kWhL2 = chgL2.totKWh;
+			float kWhDC = chgDCFast.totKWh;
+			
+			return (kWhL1*chgL1.ghgMod + kWhL2*chgL2.ghgMod + kWhDC * chgDCFast.ghgMod)/(kWhL1+kWhL2+kWhDC);
+		}
+		
 		public float eqGHG_perKWh(float avGridGHG_perKWh, float chgEffL1, float chgEffL2, float chgEffDCFast) {
 			float grandTotKWh = grandTotKWh();
 			if (grandTotKWh < ZTol) return avGridGHG_perKWh;

@@ -60,7 +60,7 @@ public class RCostBarsGUI extends JFrame implements ActionListener, ChangeListen
 
 	//GUI Objects
     private SliderBarsPanelMaker.CDSliderBarsJPanel sbPanel;
-	private JButton btnSave, btnUnits, btnEditSliderBars, btnEditOtherParam, btnEditDsiplay, btnEditAxes;
+	private JButton btnSave, btnUnits, btnEditSliderBars, btnEditOtherParam, btnEditDsiplay, btnEditAxes, btnSaveScenario, btnManageScenarios;
 	private JCheckBox chkContMode;
 	private JList<String> selSolSet;
 	private CostBarsJPanel gPanel;
@@ -80,6 +80,7 @@ public class RCostBarsGUI extends JFrame implements ActionListener, ChangeListen
 	private UsePhaseSSimulator.InputStructure upsInput;
 	private NoneBatteryMfgGHGModel nonBatMfgGHGModel;
 	private BEVRepCosts bevRepCosts;
+	private BEVCommercialModel bevMoreCommVeh;
 	private LicIMModel licimModel;
 	private VehDeprModels deprModels;
 	private HomeChargerCosts homeChgCosts;
@@ -89,6 +90,8 @@ public class RCostBarsGUI extends JFrame implements ActionListener, ChangeListen
 	private boolean reScaleAxes;
 	private CostBarsAxesSetup axesSetup;
 	private CostBarsDisplaySetup displaySetup;
+	
+	private SavedScenariosManager ssMan;
 
 	
 	//Constructor
@@ -109,7 +112,8 @@ public class RCostBarsGUI extends JFrame implements ActionListener, ChangeListen
 		try {
 			avms = AnalysisVehModelsSetup.readAnalysisVehModelsSetup(fs, aID);
 			wiitModel = WIITModel.readWIITModel(fs, aID, avms);
-			sbarMan = new SliderBarsManager(fs, aID, avms, wiitModel);
+			bevMoreCommVeh = new BEVCommercialModel(fs, aID, wiitModel);
+			sbarMan = new SliderBarsManager(fs, aID, avms, wiitModel, bevMoreCommVeh);
 		} catch (Exception e) {
 			failedLaunch();
 			return;
@@ -151,7 +155,7 @@ public class RCostBarsGUI extends JFrame implements ActionListener, ChangeListen
 		if (fecoLoo == null) {
 			
 			RWFecoSummaries runner = new RWFecoSummaries(fs, aID, pMP, CurVisualizationType.CostBars);
-			RunStatusWindow stWindow = new RunStatusWindow(runner, "Post-Processing Charging Events");
+			RunStatusWindow stWindow = new RunStatusWindow(runner, "Post-Processing Fuel Economy Simulations");
 			stWindow.startRun();
 			return;
 		}
@@ -163,6 +167,8 @@ public class RCostBarsGUI extends JFrame implements ActionListener, ChangeListen
 		
 		displaySetup = new CostBarsDisplaySetup(avms, wiitModel, fs.getFilePath_costBarsDisplay(aID));
 		displaySetup.saveDataToFile(fs.getFilePath_costBarsDisplay(aID));
+		
+		ssMan = new SavedScenariosManager(fs, aID);
 		
 		finalizeAndShow();
 	}
@@ -237,6 +243,26 @@ public class RCostBarsGUI extends JFrame implements ActionListener, ChangeListen
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
+		
+		if (source == btnSaveScenario) {
+			SaveCurScenarioDialog dlg = new SaveCurScenarioDialog();
+			
+			if (dlg.okPressed()) {
+				String stShort = dlg.getSaveScenario_shortDescription();
+				String stLong = dlg.getSaveScenario_longDescription();
+				ssMan.saveCurrentSateAsNewScenario(stShort, stLong);
+			}
+		}
+		if (source == btnManageScenarios) {
+			ManageScenariosDialog dlg = new ManageScenariosDialog(ssMan);
+			if (!dlg.okPressed()) return;
+			
+			int ssID = Math.max(0,  dlg.selectedScenarioID());
+			
+			ssMan.loadScenarioFiles(ssID);
+			dispose();			
+			new RCostBarsGUI(fs, aID, pMP, false);
+		}
 		
 		if (source == btnEditSliderBars) {
 			dispose();
@@ -376,7 +402,7 @@ public class RCostBarsGUI extends JFrame implements ActionListener, ChangeListen
         int lstSolSetHeight = LineSpacing*SolSetListNumLinespacingHeight;
         
         int topPartHeight = LineSpacing*2 + lstSolSetHeight + WinMargin;
-        int bottomPartHeight = BigBtnHeight*2 + TMargin;
+        int bottomPartHeight = BigBtnHeight*3 + TMargin*2;
         int hscHeight = gPanelHeight - (topPartHeight + bottomPartHeight + WinMargin*2);
         int hscWidth = sPanelPrefWidth;
         
@@ -452,6 +478,20 @@ public class RCostBarsGUI extends JFrame implements ActionListener, ChangeListen
 		
         
         cy += hscHeight + WinMargin;
+        
+        btnSaveScenario = new JButton("Save Current Scenario...");
+        btnSaveScenario.setSize(buttonsWidth, BigBtnHeight);
+        btnSaveScenario.setLocation(cx, cy);
+        btnSaveScenario.addActionListener(this);
+        totalGUI.add(btnSaveScenario);
+        
+        btnManageScenarios = new JButton("Load/Manage Scenarios...");
+        btnManageScenarios.setSize(buttonsWidth, BigBtnHeight);
+        btnManageScenarios.setLocation(cx + hscWidth - buttonsWidth, cy);
+        btnManageScenarios.addActionListener(this);
+        totalGUI.add(btnManageScenarios);
+        
+        cy += BigBtnHeight + TMargin;
         
         btnEditSliderBars = new JButton("Edit Scenario Parameters...");
         btnEditSliderBars.setSize(buttonsWidth, BigBtnHeight);

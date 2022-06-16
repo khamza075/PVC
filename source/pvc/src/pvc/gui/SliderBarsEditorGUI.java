@@ -62,7 +62,7 @@ public class SliderBarsEditorGUI extends JFrame implements ActionListener {
 		cvType = curVisualization;
 		AnalysisVehModelsSetup avms = AnalysisVehModelsSetup.readAnalysisVehModelsSetup(fs, aID);
 		WIITModel wiitModel = WIITModel.readWIITModel(fs, aID, avms);
-		sbarMan = new SliderBarsManager(fs, aID, avms, wiitModel);
+		sbarMan = new SliderBarsManager(fs, aID, avms, wiitModel, new BEVCommercialModel(fs, aID, wiitModel));
 		sbarsEdited = false;
 		triggerAutoScaleAxes = false;
 

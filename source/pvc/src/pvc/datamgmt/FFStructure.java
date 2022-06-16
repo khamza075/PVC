@@ -121,33 +121,56 @@ public class FFStructure {
 		vmfolders_modeling(slashChar()+"_vehModels"),
 		vmfolders_refData(vmfolders_modeling.s+slashChar()+"_refData"),
 		vmfolders_customData(vmfolders_modeling.s+slashChar()+"_custom"),
+		vmfolders_sScenariosRoot(vmfolders_modeling.s+slashChar()+"_svScen"),
+		vmfolders_sScenariosSubFolderPrefix(slashChar()+"_ss"),
 		
 		vmfiles_title(vmfolders_modeling.s+slashChar()+"_title_description.csv"),
 		vmfiles_vehList(vmfolders_modeling.s+slashChar()+"_vehModelsList.csv"),
 		vmfiles_baseModels(vmfolders_modeling.s+slashChar()+"_baseModels.csv"),
 		
-		vmfiles_dUnits(vmfolders_customData.s+slashChar()+"_units.csv"),
-		vmfiles_sbarsSetup(vmfolders_customData.s+slashChar()+"_sbarsSetup.csv"),
-		vmfiles_sbarsOrder(vmfolders_customData.s+slashChar()+"_sbarsOrder.csv"),
-		vmfiles_rvStatus(vmfolders_customData.s+slashChar()+"_rvStatus.csv"),
+		files_dUnits(slashChar()+"_units.csv"),
+		files_sbarsSetup(slashChar()+"_sbarsSetup.csv"),
+		files_sbarsOrder(slashChar()+"_sbarsOrder.csv"),
+		files_rvStatus(slashChar()+"_rvStatus.csv"),
+		files_nonBatteryMfgGHG(slashChar()+"_nonBatterManufacturingGHG.csv"),
+		files_bevRepCosts(slashChar()+"_bevReplacementCosts.csv"),
+		files_bevMoreCommVeh(slashChar()+"_bevMoreCommercialVeh.csv"),
+		files_licInsMaint(slashChar()+"_licInsMaintCosts.csv"),
+		files_depreciation(slashChar()+"_depreciationModels.csv"),
+		files_homeChargerCosts(slashChar()+"_homeChargerCosts.csv"),
+		files_costVsGHGAxes(slashChar()+"_costVsGHGAxes.csv"),
+		files_ghgAxes(slashChar()+"_ghgAxes.csv"),
+		files_costVsGHGDisplay(slashChar()+"_costVsGHGDisplay.csv"),
+		files_ghgDisplay(slashChar()+"_ghgDisplay.csv"),
+		files_costBarsDisplay(slashChar()+"_costBarsDisplay.csv"),
+		files_costBarsAxes(slashChar()+"_costBarsAxes.csv"),
+		files_vehChgEfficiencies(slashChar()+"_vehChgEfficiencies.csv"),
+		
+		vmfiles_dUnits(vmfolders_customData.s+files_dUnits.s),
+		vmfiles_sbarsSetup(vmfolders_customData.s+files_sbarsSetup.s),
+		vmfiles_sbarsOrder(vmfolders_customData.s+files_sbarsOrder.s),
+		vmfiles_rvStatus(vmfolders_customData.s+files_rvStatus.s),
 		vmfiles_gridGHG(vmfolders_customData.s+slashChar()+"_gridHourlyProfile_GHG.csv"),
 		vmfiles_gridCost(vmfolders_customData.s+slashChar()+"_gridHourlyProfile_Cost.csv"),
-		vmfolders_nonBatteryMfgGHG(vmfolders_customData.s+slashChar()+"_nonBatterManufacturingGHG.csv"),
-		vmfolders_bevRepCosts(vmfolders_customData.s+slashChar()+"_bevReplacementCosts.csv"),
-		vmfolders_licInsMaint(vmfolders_customData.s+slashChar()+"_licInsMaintCosts.csv"),
-		vmfolders_depreciation(vmfolders_customData.s+slashChar()+"_depreciationModels.csv"),
-		vmfolders_homeChargerCosts(vmfolders_customData.s+slashChar()+"_homeChargerCosts.csv"),
-		vmfolders_costVsGHGAxes(vmfolders_customData.s+slashChar()+"_costVsGHGAxes.csv"),
-		vmfolders_ghgAxes(vmfolders_customData.s+slashChar()+"_ghgAxes.csv"),
-		vmfolders_costVsGHGDisplay(vmfolders_customData.s+slashChar()+"_costVsGHGDisplay.csv"),
-		vmfolders_ghgDisplay(vmfolders_customData.s+slashChar()+"_ghgDisplay.csv"),
-		vmfolders_costBarsDisplay(vmfolders_customData.s+slashChar()+"_costBarsDisplay.csv"),
-		vmfolders_costBarsAxes(vmfolders_customData.s+slashChar()+"_costBarsAxes.csv"),
-		vmfolders_vehChgEfficiencies(vmfolders_customData.s+slashChar()+"_vehChgEfficiencies.csv"),
+		vmfiles_nonBatteryMfgGHG(vmfolders_customData.s+files_nonBatteryMfgGHG.s),
+		vmfiles_bevRepCosts(vmfolders_customData.s+files_bevRepCosts.s),
+		vmfiles_bevMoreCommVeh(vmfolders_customData.s+files_bevMoreCommVeh.s),
+		vmfiles_licInsMaint(vmfolders_customData.s+files_licInsMaint.s),
+		vmfiles_depreciation(vmfolders_customData.s+files_depreciation.s),
+		vmfiles_homeChargerCosts(vmfolders_customData.s+files_homeChargerCosts.s),
+		vmfiles_costVsGHGAxes(vmfolders_customData.s+files_costVsGHGAxes.s),
+		vmfiles_ghgAxes(vmfolders_customData.s+files_ghgAxes.s),
+		vmfiles_costVsGHGDisplay(vmfolders_customData.s+files_costVsGHGDisplay.s),
+		vmfiles_ghgDisplay(vmfolders_customData.s+files_ghgDisplay.s),
+		vmfiles_costBarsDisplay(vmfolders_customData.s+files_costBarsDisplay.s),
+		vmfiles_costBarsAxes(vmfolders_customData.s+files_costBarsAxes.s),
+		vmfiles_vehChgEfficiencies(vmfolders_customData.s+files_vehChgEfficiencies.s),
 		
 		folders_solutionFolderPrefix(slashChar()+"_simRuns"+slashChar()+"_s"),
 		files_fecoDescription(slashChar()+"_srDescription.csv"),
 		files_fecoTripSummarys(slashChar()+"_srTripSummaries.csv"),
+		files_vehJSONSummary(slashChar()+"vehSummaries.json"),
+		files_sScenariosDescription(slashChar()+"_ssDescription.csv"),
 		
 		folders_solProcFolderPrefix(slashChar()+"_simPost"+slashChar()+"_s"),
 		
@@ -218,11 +241,79 @@ public class FFStructure {
 	
 	//Function to ensure the customization folder exists
 	public void ensureCustomizationFolderExists(int aID) {
-		String folderPath = getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_customData.s;
-		File f = new File(folderPath);
+		File f = new File(getFolderPath_customization(aID));
+		f.mkdirs();
+	}
+	//Function to ensure the saved scenarios folder exists
+	public void ensureSavedScenariosFolderExists(int aID) {
+		File f = new File(getFolderPath_savedScenariosRoot(aID));
 		f.mkdirs();
 	}
 	
+	//Function to return path for customization folder
+	public String getFolderPath_customization(int aID) {
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_customData.s;
+	}
+	//Function to return path for saved scenarios root folder
+	public String getFolderPath_savedScenariosRoot(int aID) {
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_sScenariosRoot.s;
+	}
+	
+	//Function to return file path for saved scenario descriptions
+	public String getFilePath_savedScenariosDescription(int aID) {
+		return getFolderPath_savedScenariosRoot(aID) + FFStrings.files_sScenariosDescription.s; 
+	}
+	public String getFolderPath_savedScenariosSubFolder(int aID, int ssID) {
+		return getFolderPath_savedScenariosRoot(aID) + FFStrings.vmfolders_sScenariosSubFolderPrefix.s + ssID;
+	}
+	//Function to return an array of full file paths to copy from/to the customization folder to/from a saved scenarios sub-folder
+	public String[] scenarioFilesInCustomFolder(int aID) {
+		String folder = getFolderPath_customization(aID);		
+		String[] st = {
+				folder + FFStrings.files_dUnits.s,
+				folder + FFStrings.files_sbarsSetup.s,
+				folder + FFStrings.files_sbarsOrder.s,
+				folder + FFStrings.files_rvStatus.s,
+				folder + FFStrings.files_nonBatteryMfgGHG.s,
+				folder + FFStrings.files_bevRepCosts.s,
+				folder + FFStrings.files_bevMoreCommVeh.s,
+				folder + FFStrings.files_licInsMaint.s,
+				folder + FFStrings.files_depreciation.s,
+				folder + FFStrings.files_homeChargerCosts.s,
+				folder + FFStrings.files_costVsGHGAxes.s,
+				folder + FFStrings.files_ghgAxes.s,
+				folder + FFStrings.files_costVsGHGDisplay.s,
+				folder + FFStrings.files_ghgDisplay.s,
+				folder + FFStrings.files_costBarsDisplay.s,
+				folder + FFStrings.files_costBarsAxes.s,
+				folder + FFStrings.files_vehChgEfficiencies.s
+		};		
+		return st;
+	}
+	//Function to return an array of full file paths to copy from/to a saved scenarios sub-folder to/from the customization folder
+	public String[] scenarioFilesInScenarioFolder(int aID, int ssID) {
+		String folder = getFolderPath_savedScenariosSubFolder(aID, ssID);		
+		String[] st = {
+				folder + FFStrings.files_dUnits.s,
+				folder + FFStrings.files_sbarsSetup.s,
+				folder + FFStrings.files_sbarsOrder.s,
+				folder + FFStrings.files_rvStatus.s,
+				folder + FFStrings.files_nonBatteryMfgGHG.s,
+				folder + FFStrings.files_bevRepCosts.s,
+				folder + FFStrings.files_bevMoreCommVeh.s,
+				folder + FFStrings.files_licInsMaint.s,
+				folder + FFStrings.files_depreciation.s,
+				folder + FFStrings.files_homeChargerCosts.s,
+				folder + FFStrings.files_costVsGHGAxes.s,
+				folder + FFStrings.files_ghgAxes.s,
+				folder + FFStrings.files_costVsGHGDisplay.s,
+				folder + FFStrings.files_ghgDisplay.s,
+				folder + FFStrings.files_costBarsDisplay.s,
+				folder + FFStrings.files_costBarsAxes.s,
+				folder + FFStrings.files_vehChgEfficiencies.s
+		};		
+		return st;
+	}
 
 	//Function to return path for folder of vehicle analysis (vehicle analysis root)
 	public String getFolderPath_vehAnalysisRoot(int aID) {
@@ -292,51 +383,55 @@ public class FFStructure {
 	}
 	//Function to return path for file for Non-battery Manufacturing GHG model
 	public String getFilePath_nonBatteryMfgGHG(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_nonBatteryMfgGHG.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_nonBatteryMfgGHG.s;
 	}
 	//Function to return path for file for licensing, insurance and maintenance cost model
 	public String getFilePath_licInsMaintCostModels(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_licInsMaint.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_licInsMaint.s;
 	}
 	//Function to return path for file for depreciation models model
 	public String getFilePath_dereciationModels(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_depreciation.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_depreciation.s;
 	}
 	//Function to return path for file for BEV Replacement cost numbers
 	public String getFilePath_bevRepCosts(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_bevRepCosts.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_bevRepCosts.s;
+	}
+	//Function to return path for file for commercial BEVs fraction more vehicles scaling
+	public String getFilePath_bevMoreCommercialVeh(int aID) {
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_bevMoreCommVeh.s;
 	}
 	//Function to return path for file for home charger cost numbers
 	public String getFilePath_homeChargerCosts(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_homeChargerCosts.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_homeChargerCosts.s;
 	}
 	//Function to return path for file for vehicle charging efficiencies
 	public String getFilePath_vehChgEfficiencies(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_vehChgEfficiencies.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_vehChgEfficiencies.s;
 	}
 	//Function to return path for file for GHG axes
 	public String getFilePath_ghgAxes(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_ghgAxes.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_ghgAxes.s;
 	}
 	//Function to return path for file for Cost versus GHG axes
 	public String getFilePath_costVsGHGAxes(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_costVsGHGAxes.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_costVsGHGAxes.s;
 	}
 	//Function to return path for file for Cost bars axes
 	public String getFilePath_costBarsAxes(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_costBarsAxes.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_costBarsAxes.s;
 	}
 	//Function to return path for file for GHG display options
 	public String getFilePath_ghgDisplay(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_ghgDisplay.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_ghgDisplay.s;
 	}
 	//Function to return path for file for Cost versus GHG display options
 	public String getFilePath_costVsGHGDisplay(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_costVsGHGDisplay.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_costVsGHGDisplay.s;
 	}
 	//Function to return path for file for Cost bars display options
 	public String getFilePath_costBarsDisplay(int aID) {
-		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfolders_costBarsDisplay.s;
+		return getFolderPath_vehAnalysisRoot(aID) + FFStrings.vmfiles_costBarsDisplay.s;
 	}
 	//Function to return path for file for PDF file of FASTSim vehicle model documentation
 	public String getFilePath_FASTSimVehModelPDFDoc(int aID, String shortName) {
@@ -348,6 +443,10 @@ public class FFStructure {
 	}
 	public String getFilePath_fecoSimsTripSummariesFile(int aID, int sID) {
 		return getFolderPath_fecoSims(aID,sID) + FFStrings.files_fecoTripSummarys.s;
+	}
+	
+	public String getFilePath_vehJSONSummary(int aID, int sID) {
+		return getFolderPath_fecoSimsPost(aID,sID) + FFStrings.files_vehJSONSummary.s;
 	}
 	
 	
@@ -401,5 +500,22 @@ public class FFStructure {
 			
 			folder.delete();
 		} catch (Exception e) {}
+	}
+	public static void copyContentsWOverrite(String sourceFilePath, String destinationFilePath) {
+		try {
+			BufferedReader fin = new BufferedReader(new FileReader(sourceFilePath));
+			FileWriter fout = new FileWriter(destinationFilePath);
+			String lsep = System.getProperty("line.separator");
+			String readLine;
+			
+			while ((readLine = fin.readLine())!=null) {
+				fout.append(readLine+lsep);
+			}
+			
+			fin.close();
+			fout.flush();
+			fout.close();
+		}
+		catch (Exception e) {}
 	}
 }

@@ -488,7 +488,7 @@ public class WIITModel {
 		private ProfileCurve dollarPerKWhCurve_BEV, dollarPerKWhCurve_PHEV, dollarPerKWhCurve_HEV;
 
 		public float calcCost_BEV(float kWh, float sliderBarDollarPerKWhBEV) {
-			float curveSaclingFactor = sliderBarDollarPerKWhBEV / nominalDollarPerKWhBEV60kWh.baseValue;
+			float curveSaclingFactor = sliderBarDollarPerKWhBEV / nominalDollarPerKWhBEV60kWh.baseValue;		
 			return dollarPerKWhCurve_BEV.calcY(kWh)*curveSaclingFactor;
 		}
 		public float calcCost_PHEV(float kWh, float sliderBarDollarPerKWhBEV) {
